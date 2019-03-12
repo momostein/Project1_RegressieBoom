@@ -5,7 +5,7 @@ using namespace std;
 
 int main()
 {
-	const string ruleFile = "tree_gen/rules_.json";
+	const string ruleFile = "tree_gen/rules.json";
 
 	cout << ruleFile << endl;
 	cin.get();
