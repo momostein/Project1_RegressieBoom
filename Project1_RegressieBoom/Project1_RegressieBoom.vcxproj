@@ -117,6 +117,11 @@
   <ItemGroup>
     <ClCompile Include="regressieBoom.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="tree_gen\auxiliaryFunctions.py" />
+    <None Include="tree_gen\RegressionTree.ipynb" />
+    <None Include="tree_gen\rules.json" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

@@ -13,10 +13,24 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Python Files">
+      <UniqueIdentifier>{1851408e-6fbe-4421-ad17-ab5dd49bdc76}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="regressieBoom.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="tree_gen\rules.json">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="tree_gen\RegressionTree.ipynb">
+      <Filter>Python Files</Filter>
+    </None>
+    <None Include="tree_gen\auxiliaryFunctions.py">
+      <Filter>Python Files</Filter>
+    </None>
   </ItemGroup>
 </Project>
