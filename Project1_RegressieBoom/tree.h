@@ -20,7 +20,7 @@ namespace tree
 		TreeNode(std::string _name, TreeNode* _true, TreeNode* _false);
 
 		//  Parse the node from a filestream
-		TreeNode(std::fstream& fileStream);
+		TreeNode(std::ifstream& fileStream);
 
 		~TreeNode();
 	};

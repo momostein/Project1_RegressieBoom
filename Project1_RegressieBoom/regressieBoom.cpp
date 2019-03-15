@@ -6,17 +6,16 @@ using namespace tree;
 
 int main()
 {
+	using namespace std;
 	const string ruleFile = "tree_gen/rules.json";
 	{
-		TreeNode* tLeaf = new TreeNode("True Leaf");
-		TreeNode* fLeaf1 = new TreeNode("False Leaf 1");
-		TreeNode* tbranch = new TreeNode("True Branch", tLeaf, fLeaf1);
-		TreeNode* fLeaf2 = new TreeNode("False Leaf 2");
-		TreeNode* root = new TreeNode("Root", tbranch, fLeaf2);
-
-		delete root;
+		tree::Tree regressionTree;
+		if (!regressionTree.load(ruleFile)) {
+			cout << "Couldn't open file..." << endl;
+			cin.get();
+			return -1;
+		}
 	}
-	cin.get();
 
 	return 0;
 }
