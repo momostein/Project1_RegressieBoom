@@ -10,12 +10,15 @@ namespace tree
 	{
 	private:
 		bool leaf;
-		std::string name;
 
-		TreeNode* trueNode;
-		TreeNode* falseNode;
+		
 
 	public: 
+		std::string name;
+
+		TreeNode* falseNode;
+
+		TreeNode* trueNode;
 		TreeNode(std::string _name);
 		TreeNode(std::string _name, TreeNode* _true, TreeNode* _false);
 
@@ -34,8 +37,10 @@ namespace tree
 
 		int estimate(organ::Organ& organ);
 		void print();
+		void disp(TreeNode* node, int w);
 
 		Tree() : root(NULL) {};
 		~Tree();
+		friend class TreeNode;
 	};
 }

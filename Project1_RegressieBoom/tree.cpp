@@ -88,6 +88,24 @@ namespace tree
 		root = new TreeNode(ruleFile);
 	}
 
+	void Tree::print() {
+		disp(root,0);
+	}
+
+	void Tree::disp(TreeNode* node, int w) {
+		if (node->trueNode!=NULL){
+		disp(node->trueNode, w + 1);
+		}
+		for (int i = 0; i < w; i++) {
+			std::cout << "\t\t\t\t";
+		}
+		std::cout << node->name + "\n\n";
+		if (node->falseNode != NULL) {
+			disp(node->falseNode, w + 1);
+		}
+	}
+
+
 	Tree::~Tree()
 	{
 		delete root;

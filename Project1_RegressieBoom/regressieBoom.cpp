@@ -15,7 +15,10 @@ int main()
 			cin.get();
 			return -1;
 		}
+		else {
+			regressionTree.print();
+		}
 	}
-
+	system("pause");
 	return 0;
 }
