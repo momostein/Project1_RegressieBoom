@@ -11,12 +11,12 @@ namespace organ
 		Excellent
 	};
 
-	struct Organ
+	 struct Organ
 	{
-		string model;
-		Condition condition;
-		bool leslie;
+		 string model;
+		 Condition condition;
+		 bool leslie;
 
-		int price;
+		 int price;
 	};
 }
