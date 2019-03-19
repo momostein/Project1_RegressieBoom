@@ -1,9 +1,23 @@
-#include <iostream>
+﻿#include <iostream>
 #include "tree.h"
 #include "json.h"
 
 namespace tree
 {
+	void TreeNode::print(const std::string & prefix)
+	{
+		std::cout << name << std::endl;
+
+		if (!leaf)
+		{
+			std::cout << prefix << branchT;
+			trueNode->print(prefix + prefixT);
+
+			std::cout << prefix << branchF;
+			falseNode->print(prefix + prefixF);
+		}
+	}
+
 	TreeNode::TreeNode(std::string _name) :
 		name(_name), trueNode(NULL), falseNode(NULL), leaf(true) {}
 
@@ -14,6 +28,9 @@ namespace tree
 	{
 		// Look for the start of a this JSON object
 		json::seek('{', fileStream);
+
+		// Default is true, false when children are found
+		leaf = true;
 
 		bool foundName = false;
 		while (true)
@@ -89,22 +106,8 @@ namespace tree
 	}
 
 	void Tree::print() {
-		disp(root,0);
+		root->print();
 	}
-
-	void Tree::disp(TreeNode* node, int w) {
-		if (node->trueNode!=NULL){
-		disp(node->trueNode, w + 1);
-		}
-		for (int i = 0; i < w; i++) {
-			std::cout << "\t\t\t\t";
-		}
-		std::cout << node->name + "\n\n";
-		if (node->falseNode != NULL) {
-			disp(node->falseNode, w + 1);
-		}
-	}
-
 
 	Tree::~Tree()
 	{

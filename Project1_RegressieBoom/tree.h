@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include <string>
 #include <fstream>
 
@@ -6,27 +6,34 @@
 
 namespace tree
 {
+	// Speciale karakters kunnen we niet in string literals zetten,
+	// dus gebruiken wij hun ascii waardes
+	const char branchT[] = { 195, 196, 'T', 196 , 0 }; // "├─T─"
+	const char prefixT[] = { 179, ' ', ' ', ' ' , 0 }; // "│   "
+	const char branchF[] = { 192, 196, 'F', 196 , 0 }; // "└─F─"
+	const char prefixF[] = "    ";
+
 	class TreeNode
 	{
 	private:
 		bool leaf;
 
-		
-
-	public: 
 		std::string name;
 
 		TreeNode* falseNode;
-
 		TreeNode* trueNode;
+
+	public:
+		void print(const std::string& prefix = "");
+
 		TreeNode(std::string _name);
 		TreeNode(std::string _name, TreeNode* _true, TreeNode* _false);
 
 		//  Parse the node from a filestream
 		TreeNode(std::ifstream& fileStream);
-
 		~TreeNode();
 	};
+
 	class Tree
 	{
 	private:
