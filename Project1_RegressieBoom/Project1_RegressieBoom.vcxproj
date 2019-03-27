@@ -117,7 +117,7 @@
   <ItemGroup>
     <ClCompile Include="json.cpp" />
     <ClCompile Include="regressieBoom.cpp" />
-    <ClCompile Include="tree.cpp" />
+    <ClCompile Include="tree.ipp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="tree_gen\auxiliaryFunctions.py" />

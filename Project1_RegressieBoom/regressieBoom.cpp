@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 
-#include "tree.h"
+#include "tree.ipp"
 using namespace tree;
 
 int main()
@@ -9,7 +9,7 @@ int main()
 	using namespace std;
 	const string ruleFile = "tree_gen/rules.json";
 
-	tree::Tree regressionTree;
+	Tree<int> regressionTree;
 	if (!regressionTree.load(ruleFile)) {
 		cout << "Couldn't open file..." << endl;
 		cin.get();

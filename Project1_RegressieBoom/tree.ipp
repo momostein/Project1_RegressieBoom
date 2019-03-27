@@ -4,7 +4,8 @@
 
 namespace tree
 {
-	void TreeNode::print(const std::string & prefix)
+	template <typename T>
+	void TreeNode<T>::print(const std::string & prefix)
 	{
 		std::cout << name << std::endl;
 
@@ -18,13 +19,16 @@ namespace tree
 		}
 	}
 
-	TreeNode::TreeNode(std::string _name) :
+	template <typename T>
+	TreeNode<T>::TreeNode(std::string _name) :
 		name(_name), trueNode(NULL), falseNode(NULL), leaf(true) {}
 
-	TreeNode::TreeNode(std::string _name, TreeNode* _true, TreeNode* _false) :
+	template <typename T>
+	TreeNode<T>::TreeNode(std::string _name, TreeNode* _true, TreeNode* _false) :
 		name(_name), trueNode(_true), falseNode(_false), leaf(false) {}
 
-	TreeNode::TreeNode(std::ifstream& fileStream)
+	template <typename T>
+	TreeNode<T>::TreeNode(std::ifstream& fileStream)
 	{
 		// Look for the start of a this JSON object
 		json::seek('{', fileStream);
@@ -62,9 +66,9 @@ namespace tree
 					case 'n': // "children" : null
 						break;
 					case '[': // "children" : [{...}, {...}]
-						trueNode = new TreeNode(fileStream);
+						trueNode = new TreeNode<T>(fileStream);
 						json::seek(',', fileStream);
-						falseNode = new TreeNode(fileStream);
+						falseNode = new TreeNode<T>(fileStream);
 
 						json::seek(']', fileStream);
 						leaf = false;
@@ -84,13 +88,15 @@ namespace tree
 		}
 	}
 
-	TreeNode::~TreeNode()
+	template <typename T>
+	TreeNode<T>::~TreeNode()
 	{
 		delete trueNode;
 		delete falseNode;
 	}
 
-	bool Tree::load(const std::string & filename)
+	template <typename T>
+	bool Tree<T>::load(const std::string & filename)
 	{
 		// Open the file
 		std::ifstream ruleFile(filename);
@@ -102,14 +108,16 @@ namespace tree
 		}
 
 		// Parse the file's contents into the root node
-		root = new TreeNode(ruleFile);
+		root = new TreeNode<T>(ruleFile);
 	}
 
-	void Tree::print() {
+	template <typename T>
+	void Tree<T>::print() {
 		root->print();
 	}
 
-	Tree::~Tree()
+	template <typename T>
+	Tree<T>::~Tree()
 	{
 		delete root;
 	}

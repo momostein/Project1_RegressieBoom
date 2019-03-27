@@ -21,10 +21,10 @@
     <ClCompile Include="regressieBoom.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="tree.cpp">
+    <ClCompile Include="json.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="json.cpp">
+    <ClCompile Include="tree.ipp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
