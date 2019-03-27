@@ -22,8 +22,8 @@ namespace tree
 
 		std::string name;
 
-		TreeNode<T>* falseNode;
 		TreeNode<T>* trueNode;
+		TreeNode<T>* falseNode;
 		
 		eval::Evaluation evaluation;
 		
