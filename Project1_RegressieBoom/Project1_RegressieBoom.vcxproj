@@ -115,6 +115,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="evaluation.cpp" />
     <ClCompile Include="json.cpp" />
     <ClCompile Include="regressieBoom.cpp" />
     <ClCompile Include="tree.ipp" />
@@ -125,6 +126,7 @@
     <None Include="tree_gen\rules.json" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="evaluation.h" />
     <ClInclude Include="json.h" />
     <ClInclude Include="organ.h" />
     <ClInclude Include="tree.h" />

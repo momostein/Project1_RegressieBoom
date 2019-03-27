@@ -27,6 +27,9 @@
     <ClCompile Include="tree.ipp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="evaluation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="tree_gen\rules.json">
@@ -47,6 +50,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="json.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="evaluation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,4 +1,8 @@
-﻿#include <iostream>
+﻿#pragma once
+#include <iostream>
+#include <regex>
+#include <sstream>
+
 #include "tree.h"
 #include "json.h"
 
@@ -16,6 +20,25 @@ namespace tree
 
 			std::cout << prefix << branchF;
 			falseNode->print(prefix + prefixF);
+		}
+		/*else
+		{
+			// Print out the price
+			std::cout << price << std::endl;
+		}*/
+	}
+
+	template<typename T>
+	inline T TreeNode<T>::estimate(const organ::Organ & organ)
+	{
+		if (leaf)
+		{
+			return price;
+		}
+		else
+		{
+			// TODO: evaluate
+			return trueNode->estimate(organ);
 		}
 	}
 
@@ -86,6 +109,28 @@ namespace tree
 		{
 			throw json::ParseError("TreeNode Parse Error: name not found");
 		}
+
+		// Read the price from the name
+		if (leaf)
+		{
+			std::smatch m;
+
+			// searches for "x of Price"
+			// R"(...)" for a raw string
+			std::regex e(R"((.*) of Price)"); 
+
+			if (!std::regex_search(name, m, e))
+				throw std::exception("Wrong Name format for Price");
+			
+
+			// Convert the first submatch, the price, to a stringstream to parse into the price template
+			std::istringstream iss(m[1]);
+			iss >> price;
+		}
+		else
+		{
+			evaluation = eval::Evaluation(name);
+		}
 	}
 
 	template <typename T>
@@ -109,6 +154,13 @@ namespace tree
 
 		// Parse the file's contents into the root node
 		root = new TreeNode<T>(ruleFile);
+		return true;
+	}
+
+	template<typename T>
+	inline T Tree<T>::estimate(organ::Organ & organ)
+	{
+		return root->estimate(organ);
 	}
 
 	template <typename T>

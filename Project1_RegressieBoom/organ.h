@@ -6,9 +6,9 @@ namespace organ
 	using namespace std;
 	enum Condition
 	{
-		Fair,
-		Good,
-		Excellent
+		FAIR,
+		GOOD,
+		EXCELLENT,
 	};
 
 	struct Organ
@@ -16,7 +16,5 @@ namespace organ
 		string model;
 		Condition condition;
 		bool leslie;
-
-		int price;
 	};
 }

@@ -2,6 +2,7 @@
 #include <string>
 #include <fstream>
 
+#include "evaluation.h"
 #include "organ.h"
 
 namespace tree
@@ -23,14 +24,19 @@ namespace tree
 
 		TreeNode<T>* falseNode;
 		TreeNode<T>* trueNode;
+		
+		eval::Evaluation evaluation;
+		
+		T price;
 
 	public:
 		void print(const std::string& prefix = "");
+		T estimate(const organ::Organ& organ);
 
 		TreeNode(std::string _name);
 		TreeNode(std::string _name, TreeNode<T>* _true, TreeNode<T>* _false);
 
-		//  Parse the node from a filestream
+		// Parse the node from a filestream
 		TreeNode(std::ifstream& fileStream);
 		~TreeNode();
 	};
@@ -44,7 +50,7 @@ namespace tree
 	public:
 		bool load(const std::string& filename);
 
-		int estimate(organ::Organ& organ);
+		T estimate(organ::Organ& organ);
 		void print();
 
 		Tree<T>() : root(NULL) {};
