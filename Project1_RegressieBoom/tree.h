@@ -6,8 +6,8 @@
 
 namespace tree
 {
-	// Speciale karakters kunnen we niet in string literals zetten,
-	// dus gebruiken wij hun ascii waardes
+	// Speciale karakters werken precies niet in string literals zetten,
+	// dus gebruiken wij hun ascii waardes in een null terminated char array
 	const char branchT[] = { 195, 196, 'T', 196 , 0 }; // "├─T─"
 	const char prefixT[] = { 179, ' ', ' ', ' ' , 0 }; // "│   "
 	const char branchF[] = { 192, 196, 'F', 196 , 0 }; // "└─F─"
