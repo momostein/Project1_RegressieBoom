@@ -117,6 +117,7 @@
   <ItemGroup>
     <ClCompile Include="evaluation.cpp" />
     <ClCompile Include="json.cpp" />
+    <ClCompile Include="organ.cpp" />
     <ClCompile Include="regressieBoom.cpp" />
     <ClCompile Include="tree.ipp" />
   </ItemGroup>

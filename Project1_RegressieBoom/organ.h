@@ -17,4 +17,6 @@ namespace organ
 		Condition condition;
 		bool leslie;
 	};
+
+	void print(const Organ& organ);
 }

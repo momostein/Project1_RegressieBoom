@@ -13,7 +13,7 @@ int main()
 
 	Organ myOrgan;
 	myOrgan.model = "T202";
-	myOrgan.condition = FAIR;
+	myOrgan.condition = EXCELLENT;
 	myOrgan.leslie = true;
 
 	Tree<int> regressionTree;
@@ -23,33 +23,22 @@ int main()
 		return -1;
 	}
 
+	// Print the tree
 	regressionTree.print();
-
 	cout << endl << endl;
-	cout << "Estimating Organ:" << endl;
-	cout << "\tModel: " << myOrgan.model << endl;
 
-	cout << "\tCondition: ";
-	switch (myOrgan.condition)
-	{
-	case FAIR:
-		cout << "Fair";
-		break;
-	case GOOD:
-		cout << "Good";
-		break;
-	case EXCELLENT:
-		cout << "Excellent";
-	default:
-		break;
-	}
+	print(myOrgan);
+
 	cout << endl;
 
-	cout << "\tLeslie: " << boolalpha << myOrgan.leslie << endl << endl;
-
+	// Estimate the price and print it
 	cout << "Price estimate: " << regressionTree.estimate(myOrgan) << endl;
 
+	// Wait for user to close
+	cout << endl << "Press enter to continue...";
+	cin.get();
 
-	system("pause");
+	// Geen system("pause") gebruiken. Het is zeer platform specifiek
+	// system("pause");
 	return 0;
 }
