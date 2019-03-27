@@ -37,8 +37,10 @@ namespace tree
 		}
 		else
 		{
-			// TODO: evaluate
-			return trueNode->estimate(organ);
+			if (evaluation.evaluate(organ))
+				return trueNode->estimate(organ);
+			else
+				return falseNode->estimate(organ);
 		}
 	}
 

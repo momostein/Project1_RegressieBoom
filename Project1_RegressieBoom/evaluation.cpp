@@ -7,7 +7,33 @@ namespace eval
 {
 	bool Evaluation::evaluate(const organ::Organ & organ)
 	{
-		return false;
+		bool val;
+
+		switch (field)
+		{
+		case eval::Evaluation::MODEL:
+			val = model == organ.model;
+			break;
+		case eval::Evaluation::CONDITION:
+			val = condition == organ.condition;
+			break;
+		case eval::Evaluation::LESLIE:
+			val = leslie == organ.leslie;
+			break;
+		default:
+			val = false;
+			break;
+		}
+		
+		switch (comp)
+		{
+		case '>':
+			return val > comp_val;
+		case '<':
+			return val < comp_val;
+		default:
+			return false;
+		}
 	}
 
 	Evaluation::Evaluation(const std::string & eval_string)
@@ -47,7 +73,7 @@ namespace eval
 		else if (sField == "Leslie")
 		{
 			field = LESLIE;
-			bool leslie = sFieldVal == "yes";
+			leslie = sFieldVal == "yes";
 			
 		}
 		else
