@@ -6,9 +6,9 @@ void organ::print(const Organ & organ)
 {
 	// Print the organ
 	cout << "Organ:" << endl;
-	cout << "\tModel: " << organ.model << endl;
+	cout << " - Model:\t" << organ.model << endl;
 
-	cout << "\tCondition: ";
+	cout << " - Condition:\t";
 	switch (organ.condition)
 	{
 	case FAIR:
@@ -24,5 +24,5 @@ void organ::print(const Organ & organ)
 	}
 	cout << endl;
 
-	cout << "\tLeslie: " << boolalpha << organ.leslie << endl;
+	cout << " - Leslie:\t" << boolalpha << organ.leslie << endl;
 }
