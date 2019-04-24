@@ -15,10 +15,4 @@ namespace json
 	char seekNonWS(std::ifstream& fileStream);
 
 	std::string parseUntill(char c, std::ifstream& fileStream);
-
-	class ParseError : public std::exception
-	{
-	public:
-		ParseError(const char* msg) : std::exception(msg) {};
-	};
 }	

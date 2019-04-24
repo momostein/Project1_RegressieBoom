@@ -44,6 +44,7 @@
     <None Include="tree_gen\auxiliaryFunctions.py">
       <Filter>Python Files</Filter>
     </None>
+    <None Include="tree_gen\rules_bad.json" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="organ.h">

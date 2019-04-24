@@ -21,6 +21,7 @@ namespace tree
 			std::cout << prefix << branchF;
 			falseNode->print(prefix + prefixF);
 		}
+
 		/*else
 		{
 			// Print out the price
@@ -107,9 +108,10 @@ namespace tree
 			}
 		}
 
+		// A name field must always be present
 		if (!foundName)
 		{
-			throw json::ParseError("TreeNode Parse Error: name not found");
+			throw std::exception("Name field not found in json object!");
 		}
 
 		// Read the price from the name
@@ -119,11 +121,11 @@ namespace tree
 
 			// searches for "x of Price"
 			// R"(...)" for a raw string
-			std::regex e(R"((.*) of Price)"); 
+			std::regex e(R"((.*) of Price)");
 
 			if (!std::regex_search(name, m, e))
-				throw std::exception("Wrong Name format for Price");
-			
+				throw std::exception("Wrong Name format for the price");
+
 
 			// Convert the first submatch, the price, to a stringstream to parse into the price template
 			std::istringstream iss(m[1]);
@@ -151,7 +153,7 @@ namespace tree
 		// Return false if the file wasn't opened correctly
 		if (!ruleFile)
 		{
-			return false;
+			throw std::exception("File not found!");
 		}
 
 		// Parse the file's contents into the root node

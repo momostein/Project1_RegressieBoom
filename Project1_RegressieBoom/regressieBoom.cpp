@@ -9,7 +9,7 @@ int main()
 	using namespace std;
 	using namespace organ;
 
-	const string ruleFile = "tree_gen/rules.json";
+	const string ruleFile = "tree_gen/rules_bad.json";
 
 	Organ myOrgan;
 	myOrgan.model = "T202";
@@ -17,8 +17,15 @@ int main()
 	myOrgan.leslie = true;
 
 	Tree<int> regressionTree;
-	if (!regressionTree.load(ruleFile)) {
-		cout << "Couldn't open file..." << endl;
+	
+	try {
+		regressionTree.load(ruleFile);
+	}
+	catch (exception e)
+	{
+		cout << "Something went wrong while loading the regression tree:" << endl;
+		cout << "Error: \"" << e.what() << "\"" << endl;
+		cout << endl << "Press enter to continue...";
 		cin.get();
 		return -1;
 	}
@@ -37,8 +44,5 @@ int main()
 	// Wait for user to close
 	cout << endl << "Press enter to continue...";
 	cin.get();
-
-	// Geen system("pause") gebruiken. Het is zeer platform specifiek
-	// system("pause");
 	return 0;
 }

@@ -125,6 +125,7 @@
     <None Include="tree_gen\auxiliaryFunctions.py" />
     <None Include="tree_gen\RegressionTree.ipynb" />
     <None Include="tree_gen\rules.json" />
+    <None Include="tree_gen\rules_bad.json" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="evaluation.h" />

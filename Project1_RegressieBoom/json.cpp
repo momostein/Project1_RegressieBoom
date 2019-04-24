@@ -10,7 +10,7 @@ namespace json
 		{
 			// Throw an Exception if the end-of-file is reached
 			if (fileStream.eof())
-				throw ParseError("JSON Parse Error: EOF reached");
+				throw std::exception("EOF reached while seeking");
 
 			if (fileStream.get() == c)
 				return c;
@@ -23,7 +23,7 @@ namespace json
 		{
 			// Throw an Exception if the end-of-file is reached
 			if (fileStream.eof())
-				throw ParseError("JSON Parse Error: EOF reached");
+				throw std::exception("EOF reached while seeking");
 
 			// Read the next character from the file
 			char c = fileStream.get();
@@ -43,7 +43,7 @@ namespace json
 		{
 			// Throw an Exception if the end-of-file is reached
 			if (fileStream.eof())
-				throw ParseError("JSON Parse Error: EOF reached");
+				throw std::exception("EOF reached while seeking");
 
 			// Read the next character from the file
 			char c = fileStream.get();
@@ -61,7 +61,7 @@ namespace json
 		{
 			// Throw an Exception if the end-of-file is reached
 			if (fileStream.eof())
-				throw ParseError("JSON Parse Error: EOF reached");
+				throw std::exception("EOF reached while seeking");
 
 			char new_c = fileStream.get();
 

@@ -44,7 +44,7 @@ namespace eval
 		// R"(...)" for a raw string
 		std::regex e(R"((.*)_(.*) ([><]) ([-+]?[0-9]*\.?[0-9]*))");
 		if (!std::regex_search(eval_string, m, e))
-			throw std::exception("Wrong Name format for evalutation");
+			throw std::exception("Wrong Name format for an evalutation");
 
 		std::string sField = m[1];
 		std::string sFieldVal = m[2];
