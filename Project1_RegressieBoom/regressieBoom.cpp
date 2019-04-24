@@ -9,7 +9,7 @@ int main()
 	using namespace std;
 	using namespace organ;
 
-	const string ruleFile = "tree_gen/rules_bad.json";
+	const string ruleFile = "tree_gen/rules.json";
 
 	Organ myOrgan;
 	myOrgan.model = "T202";
@@ -21,7 +21,7 @@ int main()
 	try {
 		regressionTree.load(ruleFile);
 	}
-	catch (exception e)
+	catch (exception& e)
 	{
 		cout << "Something went wrong while loading the regression tree:" << endl;
 		cout << "Error: \"" << e.what() << "\"" << endl;

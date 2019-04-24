@@ -44,7 +44,11 @@ namespace eval
 		// R"(...)" for a raw string
 		std::regex e(R"((.*)_(.*) ([><]) ([-+]?[0-9]*\.?[0-9]*))");
 		if (!std::regex_search(eval_string, m, e))
-			throw std::exception("Wrong Name format for an evalutation");
+		{
+			std::string error = "Wrong name format for an evaluation: " + eval_string;
+			throw std::exception(error.c_str());
+		}
+			
 
 		std::string sField = m[1];
 		std::string sFieldVal = m[2];
@@ -66,7 +70,7 @@ namespace eval
 			else 
 			{
 				std::string error = "Unknow Condition: " + sFieldVal;
-				throw error;
+				throw std::exception(error.c_str());
 			}
 				
 		}
@@ -79,7 +83,7 @@ namespace eval
 		else
 		{
 			std::string error = "Unknow Field: " + sField;
-			throw error;
+			throw std::exception(error.c_str());
 		}
 
 		comp = m[3].str()[0]; //Grab first char from the string

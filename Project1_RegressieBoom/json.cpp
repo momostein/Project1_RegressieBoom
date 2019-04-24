@@ -1,4 +1,5 @@
 #include <ctype.h>
+#include <iostream>
 
 #include "json.h"
 
@@ -10,7 +11,11 @@ namespace json
 		{
 			// Throw an Exception if the end-of-file is reached
 			if (fileStream.eof())
-				throw std::exception("EOF reached while seeking");
+			{
+				std::string error = "EOF reached while seeking for ";
+				error += c;
+				throw std::exception(error.c_str());
+			}
 
 			if (fileStream.get() == c)
 				return c;
@@ -23,7 +28,11 @@ namespace json
 		{
 			// Throw an Exception if the end-of-file is reached
 			if (fileStream.eof())
-				throw std::exception("EOF reached while seeking");
+			{
+				std::cout << "yeet2" << std::endl;
+				std::string error = "EOF reached while seeking for " + chars;
+				throw std::exception(error.c_str());
+			}
 
 			// Read the next character from the file
 			char c = fileStream.get();
@@ -43,7 +52,7 @@ namespace json
 		{
 			// Throw an Exception if the end-of-file is reached
 			if (fileStream.eof())
-				throw std::exception("EOF reached while seeking");
+				throw std::exception("EOF reached while seeking for a non-whitespace character");
 
 			// Read the next character from the file
 			char c = fileStream.get();
@@ -61,7 +70,12 @@ namespace json
 		{
 			// Throw an Exception if the end-of-file is reached
 			if (fileStream.eof())
-				throw std::exception("EOF reached while seeking");
+			{
+				std::cout << "yeet3" << std::endl;
+				std::string error = "EOF reached while parsing untill ";
+				error += c;
+				throw std::exception(error.c_str());
+			}
 
 			char new_c = fileStream.get();
 

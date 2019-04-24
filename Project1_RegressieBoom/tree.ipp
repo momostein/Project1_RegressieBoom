@@ -124,7 +124,10 @@ namespace tree
 			std::regex e(R"((.*) of Price)");
 
 			if (!std::regex_search(name, m, e))
-				throw std::exception("Wrong Name format for the price");
+			{
+				std::string error = "Wrong name format for the price: " + name;
+				throw std::exception(error.c_str());
+			}
 
 
 			// Convert the first submatch, the price, to a stringstream to parse into the price template
