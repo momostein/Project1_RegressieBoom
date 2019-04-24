@@ -38,11 +38,14 @@ namespace eval
 
 	Evaluation::Evaluation(const std::string & eval_string)
 	{
+		// Regex matches
 		std::smatch m;
 
 		// Searches for "Field_Value (>/<) (float)"
 		// R"(...)" for a raw string
 		std::regex e(R"((.*)_(.*) ([><]) ([-+]?[0-9]*\.?[0-9]*))");
+
+		// Search the string for an evaluation format
 		if (!std::regex_search(eval_string, m, e))
 		{
 			std::string error = "Wrong name format for an evaluation: " + eval_string;

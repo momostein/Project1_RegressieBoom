@@ -1,5 +1,4 @@
 #include <ctype.h>
-#include <iostream>
 
 #include "json.h"
 
@@ -29,7 +28,6 @@ namespace json
 			// Throw an Exception if the end-of-file is reached
 			if (fileStream.eof())
 			{
-				std::cout << "yeet2" << std::endl;
 				std::string error = "EOF reached while seeking for " + chars;
 				throw std::exception(error.c_str());
 			}
@@ -71,7 +69,6 @@ namespace json
 			// Throw an Exception if the end-of-file is reached
 			if (fileStream.eof())
 			{
-				std::cout << "yeet3" << std::endl;
 				std::string error = "EOF reached while parsing untill ";
 				error += c;
 				throw std::exception(error.c_str());
