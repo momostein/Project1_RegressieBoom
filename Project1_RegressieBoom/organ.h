@@ -1,6 +1,8 @@
 #pragma once
 #include <string>
 
+// TODO: Better comments
+
 namespace organ
 {
 	using namespace std;

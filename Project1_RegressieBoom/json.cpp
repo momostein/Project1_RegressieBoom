@@ -2,6 +2,8 @@
 
 #include "json.h"
 
+// TODO: Better comments
+
 namespace json
 {
 	char seek(char c, std::ifstream & fileStream)

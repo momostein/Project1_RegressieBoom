@@ -4,10 +4,12 @@
 
 void organ::print(const Organ & organ)
 {
-	// Print the organ
 	cout << "Organ:" << endl;
+
+	// Model field
 	cout << " - Model:\t" << organ.model << endl;
 
+	// Condition field
 	cout << " - Condition:\t";
 	switch (organ.condition)
 	{
@@ -24,5 +26,6 @@ void organ::print(const Organ & organ)
 	}
 	cout << endl;
 
+	// Leslie field
 	cout << " - Leslie:\t" << boolalpha << organ.leslie << endl;
 }

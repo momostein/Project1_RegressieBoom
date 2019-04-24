@@ -6,6 +6,8 @@
 #include "tree.h"
 #include "json.h"
 
+// TODO: Better comments
+
 namespace tree
 {
 	template <typename T>

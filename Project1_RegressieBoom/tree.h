@@ -5,6 +5,8 @@
 #include "evaluation.h"
 #include "organ.h"
 
+// TODO: Better comments
+
 namespace tree
 {
 	// Speciale karakters werken precies niet in string literals zetten,
