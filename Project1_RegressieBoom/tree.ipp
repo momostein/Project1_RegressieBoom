@@ -7,6 +7,7 @@
 #include "json.h"
 
 // TODO: Better comments
+// TODO: Fix if else statement in key switch
 
 namespace tree
 {
