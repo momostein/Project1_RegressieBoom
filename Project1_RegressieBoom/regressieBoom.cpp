@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
-
+#include <chrono>    
+#include <ctime> 
 #include "tree.ipp"
 using namespace tree;
 
@@ -24,6 +25,8 @@ int main()
 	try {
 		// Load the rules from the rule file into the tree
 		regressionTree.load(ruleFile);
+		
+
 	}
 	catch (exception& e)
 	{
@@ -46,8 +49,23 @@ int main()
 	cout << endl;
 
 	// Estimate the price and print it
-	cout << "Price estimate: " << regressionTree.estimate(myOrgan) << endl;
+	int x = 0;
+	double elapsed_secs = 0;
+	int price;
+	std::chrono::time_point<std::chrono::system_clock> start, end;
 
+	start = std::chrono::system_clock::now();
+	while( x<10000){
+	
+	price = regressionTree.estimate(myOrgan);
+	
+	x += 1;
+	}
+	end = std::chrono::system_clock::now();
+
+	std::chrono::duration<double> elapsed_seconds = end - start;
+	std::cout << "average time: " << elapsed_seconds.count()/10000 << "s\n";
+	cout << "Price estimate: " << price << endl;
 	// Wait for user confirmation
 	cout << endl << "Press enter to continue...";
 	cin.get();
