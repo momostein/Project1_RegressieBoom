@@ -6,7 +6,6 @@
 #include "organ.h"
 
 // TODO: Better comments
-// TODO: Turn Tree.load() back into void
 
 namespace tree
 {
@@ -51,7 +50,7 @@ namespace tree
 		TreeNode<T>* root;
 
 	public:
-		bool load(const std::string& filename);
+		void load(const std::string& filename);
 
 		T estimate(organ::Organ& organ);
 		void print();

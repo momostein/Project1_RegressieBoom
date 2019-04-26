@@ -7,8 +7,6 @@
 #include "json.h"
 
 // TODO: Better comments
-// TODO: Fix if else statement in key switch
-// TODO: Turn Tree.load() back into a void
 
 namespace tree
 {
@@ -80,6 +78,7 @@ namespace tree
 			{
 				std::string  key = json::parseUntill('"', fileStream);
 				json::seek(':', fileStream);
+
 				if (key == "name")
 				{
 					json::seek('"', fileStream);
@@ -88,7 +87,7 @@ namespace tree
 					foundName = true;
 
 				}
-				if (key == "children")
+				else if (key == "children")
 				{
 					char first = json::seek("[n", fileStream);
 					switch (first)
@@ -133,7 +132,6 @@ namespace tree
 				throw std::exception(error.c_str());
 			}
 
-
 			// Convert the first submatch, the price, to a stringstream to parse into the price template
 			std::istringstream iss(m[1]);
 			iss >> price;
@@ -152,7 +150,7 @@ namespace tree
 	}
 
 	template <typename T>
-	bool Tree<T>::load(const std::string & filename)
+	void Tree<T>::load(const std::string & filename)
 	{
 		// Open the file
 		std::ifstream ruleFile(filename);
@@ -165,7 +163,6 @@ namespace tree
 
 		// Parse the file's contents into the root node
 		root = new TreeNode<T>(ruleFile);
-		return true;
 	}
 
 	template<typename T>
