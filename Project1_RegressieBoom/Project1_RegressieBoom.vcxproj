@@ -126,6 +126,11 @@
     <None Include="tree_gen\RegressionTree.ipynb" />
     <None Include="tree_gen\rules.json" />
     <None Include="tree_gen\rules_bad.json" />
+    <None Include="tree_gen\rules_d1.json" />
+    <None Include="tree_gen\rules_d2.json" />
+    <None Include="tree_gen\rules_d3.json" />
+    <None Include="tree_gen\rules_d4.json" />
+    <None Include="tree_gen\rules_d5.json" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="evaluation.h" />
