@@ -14,11 +14,6 @@ namespace json
 	// Seek the first non whitespace character
 	char seekNonWS(std::ifstream& fileStream);
 
+	// Parse a string untill the specified character
 	std::string parseUntill(char c, std::ifstream& fileStream);
-
-	class ParseError : public std::exception
-	{
-	public:
-		ParseError(const char* msg) : std::exception(msg) {};
-	};
 }	

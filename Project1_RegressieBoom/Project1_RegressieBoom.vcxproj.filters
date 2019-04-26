@@ -21,10 +21,16 @@
     <ClCompile Include="regressieBoom.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="tree.cpp">
+    <ClCompile Include="json.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="json.cpp">
+    <ClCompile Include="tree.ipp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="evaluation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="organ.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -38,6 +44,9 @@
     <None Include="tree_gen\auxiliaryFunctions.py">
       <Filter>Python Files</Filter>
     </None>
+    <None Include="tree_gen\rules_bad.json">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="organ.h">
@@ -47,6 +56,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="json.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="evaluation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

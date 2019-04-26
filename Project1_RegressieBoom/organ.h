@@ -1,22 +1,24 @@
 #pragma once
 #include <string>
 
+// TODO: Better comments
+
 namespace organ
 {
 	using namespace std;
 	enum Condition
 	{
-		Fair,
-		Good,
-		Excellent
+		FAIR,
+		GOOD,
+		EXCELLENT,
 	};
 
-	 struct Organ
+	struct Organ
 	{
-		 string model;
-		 Condition condition;
-		 bool leslie;
-
-		 int price;
+		string model;
+		Condition condition;
+		bool leslie;
 	};
+
+	void print(const Organ& organ);
 }

@@ -2,17 +2,21 @@
 #include <string>
 #include <fstream>
 
+#include "evaluation.h"
 #include "organ.h"
+
+// TODO: Better comments
 
 namespace tree
 {
-	// Speciale karakters kunnen we niet in string literals zetten,
-	// dus gebruiken wij hun ascii waardes
-	const char branchT[] = { 195, 196, 'T', 196 , 0 }; // "├─T─"
-	const char prefixT[] = { 179, ' ', ' ', ' ' , 0 }; // "│   "
-	const char branchF[] = { 192, 196, 'F', 196 , 0 }; // "└─F─"
+	// Speciale karakters werken precies niet in string literals zetten,
+	// dus gebruiken wij hun ascii waardes in een null terminated char array
+	const char branchT[] = { 195u, 196u, 'T', 196u , 0u }; // "├─T─"
+	const char prefixT[] = { 179u,	' ', ' ',  ' ' , 0u }; // "│   "
+	const char branchF[] = { 192u, 196u, 'F', 196u , 0u }; // "└─F─"
 	const char prefixF[] = "    ";
 
+	template <typename T>
 	class TreeNode
 	{
 	private:
@@ -20,34 +24,38 @@ namespace tree
 
 		std::string name;
 
-		TreeNode* falseNode;
-		TreeNode* trueNode;
+		TreeNode<T>* trueNode;
+		TreeNode<T>* falseNode;
+		
+		eval::Evaluation evaluation;
+		
+		T price;
 
 	public:
 		void print(const std::string& prefix = "");
+		T estimate(const organ::Organ& organ);
 
 		TreeNode(std::string _name);
-		TreeNode(std::string _name, TreeNode* _true, TreeNode* _false);
+		TreeNode(std::string _name, TreeNode<T>* _true, TreeNode<T>* _false);
 
-		//  Parse the node from a filestream
+		// Parse the node from a filestream
 		TreeNode(std::ifstream& fileStream);
 		~TreeNode();
 	};
 
+	template <typename T>
 	class Tree
 	{
 	private:
-		TreeNode* root;
+		TreeNode<T>* root;
 
 	public:
-		bool load(const std::string& filename);
+		void load(const std::string& filename);
 
-		int estimate(organ::Organ& organ);
+		T estimate(organ::Organ& organ);
 		void print();
-		void disp(TreeNode* node, int w);
 
-		Tree() : root(NULL) {};
-		~Tree();
-		friend class TreeNode;
+		Tree<T>() : root(NULL) {};
+		~Tree<T>();
 	};
 }

@@ -115,16 +115,20 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="evaluation.cpp" />
     <ClCompile Include="json.cpp" />
+    <ClCompile Include="organ.cpp" />
     <ClCompile Include="regressieBoom.cpp" />
-    <ClCompile Include="tree.cpp" />
+    <ClCompile Include="tree.ipp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="tree_gen\auxiliaryFunctions.py" />
     <None Include="tree_gen\RegressionTree.ipynb" />
     <None Include="tree_gen\rules.json" />
+    <None Include="tree_gen\rules_bad.json" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="evaluation.h" />
     <ClInclude Include="json.h" />
     <ClInclude Include="organ.h" />
     <ClInclude Include="tree.h" />

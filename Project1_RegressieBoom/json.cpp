@@ -2,6 +2,8 @@
 
 #include "json.h"
 
+// TODO: Better comments
+
 namespace json
 {
 	char seek(char c, std::ifstream & fileStream)
@@ -10,7 +12,11 @@ namespace json
 		{
 			// Throw an Exception if the end-of-file is reached
 			if (fileStream.eof())
-				throw ParseError("JSON Parse Error: EOF reached");
+			{
+				std::string error = "EOF reached while seeking for ";
+				error += c;
+				throw std::exception(error.c_str());
+			}
 
 			if (fileStream.get() == c)
 				return c;
@@ -23,7 +29,10 @@ namespace json
 		{
 			// Throw an Exception if the end-of-file is reached
 			if (fileStream.eof())
-				throw ParseError("JSON Parse Error: EOF reached");
+			{
+				std::string error = "EOF reached while seeking for " + chars;
+				throw std::exception(error.c_str());
+			}
 
 			// Read the next character from the file
 			char c = fileStream.get();
@@ -43,7 +52,7 @@ namespace json
 		{
 			// Throw an Exception if the end-of-file is reached
 			if (fileStream.eof())
-				throw ParseError("JSON Parse Error: EOF reached");
+				throw std::exception("EOF reached while seeking for a non-whitespace character");
 
 			// Read the next character from the file
 			char c = fileStream.get();
@@ -61,7 +70,11 @@ namespace json
 		{
 			// Throw an Exception if the end-of-file is reached
 			if (fileStream.eof())
-				throw ParseError("JSON Parse Error: EOF reached");
+			{
+				std::string error = "EOF reached while parsing untill ";
+				error += c;
+				throw std::exception(error.c_str());
+			}
 
 			char new_c = fileStream.get();
 
