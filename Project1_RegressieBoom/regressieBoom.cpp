@@ -2,6 +2,8 @@
 #include <string>
 #include <chrono>    
 #include <ctime> 
+#include <vector>
+
 #include "tree.ipp"
 using namespace tree;
 
