@@ -161,6 +161,9 @@ namespace tree
 			throw std::exception("File not found!");
 		}
 
+		// Delete the previously stored root
+		delete root;
+
 		// Parse the file's contents into the root node
 		root = new TreeNode<T>(ruleFile);
 	}
