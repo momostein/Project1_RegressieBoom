@@ -10,9 +10,15 @@ int main()
 	using namespace std;
 	using namespace organ;
 
-	// Filename of the rule file
-	const string rulefiles[5] = { "tree_gen/rules_d1.json", "tree_gen/rules_d2.json", "tree_gen/rules_d3.json", "tree_gen/rules_d4.json", "tree_gen/rules_d5.json" };
+	// Filenames of the rule files
 	const string ruleFile = "tree_gen/rules.json";
+	const string rulefiles[5] = {
+		"tree_gen/rules_d1.json",
+		"tree_gen/rules_d2.json",
+		"tree_gen/rules_d3.json",
+		"tree_gen/rules_d4.json",
+		"tree_gen/rules_d5.json"
+	};
 
 	// Declare the organ that is to be estimated
 	Organ myOrgan;
@@ -37,7 +43,7 @@ int main()
 	// For every depth
 	for (int i = 0; i < 5; i++)
 	{
-		cout << endl << "depth " << i + 1 << ":" << endl;
+		cout << endl << "Depth = " << i + 1 << ":" << endl;
 		try
 		{
 			// Start and end times
@@ -64,7 +70,7 @@ int main()
 		{
 			// Catch and print out the error
 			cout << "Something went wrong while loading the regression tree:" << endl;
-			cout << "Error: \"" << e.what() << "\"" << endl;
+			cout << e.what() << endl;
 
 			// Wait for user confirmation
 			cout << endl << "Press enter to continue...";
@@ -94,13 +100,19 @@ int main()
 		std::cout << "average time: " << elapsed_seconds.count() / estimate_amount << "s\n";
 		cout << "Price estimate: " << price << endl;
 	}
-	for (int i = 0; i < 5; i++) {
 
-		cout << "depth " << i + 1 << ": " << average_load_times[i] << endl;
+	// Print the average load times
+	cout << endl << "Average load times:" << endl;
+	for (int i = 0; i < 5; i++)
+	{
+		cout << " - Depth = " << i + 1 << ": " << average_load_times[i] << endl;
 	}
-	for (int i = 0; i < 5; i++) {
 
-		cout << "depth " << i + 1 << ": " << avarage_times[i] << endl;
+	// Print the average estimate times
+	cout << endl << "Average estimate times:" << endl;
+	for (int i = 0; i < 5; i++)
+	{
+		cout << " - Depth = " << i + 1 << ": " << avarage_times[i] << endl;
 	}
 
 	// Wait for user confirmation
