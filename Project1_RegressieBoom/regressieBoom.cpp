@@ -21,23 +21,28 @@ int main()
 	myOrgan.leslie = true;
 
 	// How much times the tests should be executed
-	const int load_amount = 1000;
+	const int load_amount = 100;
 	const int estimate_amount = 10000;
 
 	// Array to store the load times
-	double load_times[5];
+	double average_load_times[5];
 	double avarage_times[5];
-	
+
+	// Print the organ
+	print(myOrgan);
+
 	// Declare the decision tree
 	Tree<int> regressionTree;
+
+	// For every depth
 	for (int i = 0; i < 5; i++)
 	{
-		cout << "depth " << i + 1 << endl;
+		cout << endl << "depth " << i + 1 << ":" << endl;
 		try
 		{
-			
-			std::chrono::time_point<std::chrono::system_clock> start, end;
-			start = std::chrono::system_clock::now();
+			// Start and end times
+			std::chrono::time_point<std::chrono::high_resolution_clock> start, end;
+			start = std::chrono::high_resolution_clock::now();
 
 			// Load the tree a bunch of times
 			for (int j = 0; j < load_amount; j++)
@@ -46,10 +51,14 @@ int main()
 				regressionTree.load(rulefiles[i]);
 			}
 
-			end = std::chrono::system_clock::now();
+			// End time
+			end = std::chrono::high_resolution_clock::now();
 
+			// Total time
 			std::chrono::duration<double> elapsed_seconds = end - start;
-			load_times[i] = elapsed_seconds.count() / load_amount;
+
+			// Average load time
+			average_load_times[i] = elapsed_seconds.count() / load_amount;
 		}
 		catch (exception& e)
 		{
@@ -67,22 +76,18 @@ int main()
 		regressionTree.print();
 		cout << endl << endl;
 
-		// Print the organ
-		print(myOrgan);
-		cout << endl;
-
 		// Estimate the price and print it
 		int x = 0;
 		double elapsed_secs = 0;
 		int price;
-		std::chrono::time_point<std::chrono::system_clock> start, end;
+		std::chrono::time_point<std::chrono::high_resolution_clock> start, end;
 
-		start = std::chrono::system_clock::now();
+		start = std::chrono::high_resolution_clock::now();
 		for (int j = 0; j < estimate_amount; j++)
 		{
 			price = regressionTree.estimate(myOrgan);
 		}
-		end = std::chrono::system_clock::now();
+		end = std::chrono::high_resolution_clock::now();
 
 		std::chrono::duration<double> elapsed_seconds = end - start;
 		avarage_times[i] = elapsed_seconds.count() / estimate_amount;
@@ -91,7 +96,7 @@ int main()
 	}
 	for (int i = 0; i < 5; i++) {
 
-		cout << "depth " << i + 1 << ": " << load_times[i] << endl;
+		cout << "depth " << i + 1 << ": " << average_load_times[i] << endl;
 	}
 	for (int i = 0; i < 5; i++) {
 

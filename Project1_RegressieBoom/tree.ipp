@@ -63,7 +63,7 @@ namespace tree
 
 		// Default is true, false when children are found
 		leaf = true;
-
+		
 		bool foundName = false;
 		while (true)
 		{
@@ -73,7 +73,6 @@ namespace tree
 			{
 				break;
 			}
-
 			else if (c == '"')
 			{
 				std::string  key = json::parseUntill('"', fileStream);
