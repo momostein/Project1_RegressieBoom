@@ -32,7 +32,7 @@ int main()
 
 	// Array to store the load times
 	double average_load_times[5];
-	double avarage_times[5];
+	double avarage_estimate_times[5];
 
 	// Print the organ
 	print(myOrgan);
@@ -47,8 +47,8 @@ int main()
 		try
 		{
 			// Start and end times
-			std::chrono::time_point<std::chrono::high_resolution_clock> start, end;
-			start = std::chrono::high_resolution_clock::now();
+			chrono::time_point<chrono::high_resolution_clock> start, end;
+			start = chrono::high_resolution_clock::now();
 
 			// Load the tree a bunch of times
 			for (int j = 0; j < load_amount; j++)
@@ -58,10 +58,10 @@ int main()
 			}
 
 			// End time
-			end = std::chrono::high_resolution_clock::now();
+			end = chrono::high_resolution_clock::now();
 
 			// Total time
-			std::chrono::duration<double> elapsed_seconds = end - start;
+			chrono::duration<double> elapsed_seconds = end - start;
 
 			// Average load time
 			average_load_times[i] = elapsed_seconds.count() / load_amount;
@@ -80,39 +80,41 @@ int main()
 
 		// Print the tree
 		regressionTree.print();
-		cout << endl << endl;
 
 		// Estimate the price and print it
 		int x = 0;
 		double elapsed_secs = 0;
 		int price;
-		std::chrono::time_point<std::chrono::high_resolution_clock> start, end;
+		chrono::time_point<chrono::high_resolution_clock> start, end;
 
-		start = std::chrono::high_resolution_clock::now();
+		start = chrono::high_resolution_clock::now();
 		for (int j = 0; j < estimate_amount; j++)
 		{
 			price = regressionTree.estimate(myOrgan);
 		}
-		end = std::chrono::high_resolution_clock::now();
+		end = chrono::high_resolution_clock::now();
 
-		std::chrono::duration<double> elapsed_seconds = end - start;
-		avarage_times[i] = elapsed_seconds.count() / estimate_amount;
-		std::cout << "average time: " << elapsed_seconds.count() / estimate_amount << "s\n";
-		cout << "Price estimate: " << price << endl;
+		chrono::duration<double> elapsed_seconds = end - start;
+		avarage_estimate_times[i] = elapsed_seconds.count() / estimate_amount;
+
+		cout <<endl<< "Price estimate: " << price << endl;
+		cout << "Average load time: " << average_load_times[i] << "s\n";
+		cout << "Average estimate time: " << avarage_estimate_times[i] << "s\n";
+		
 	}
 
 	// Print the average load times
 	cout << endl << "Average load times:" << endl;
 	for (int i = 0; i < 5; i++)
 	{
-		cout << " - Depth = " << i + 1 << ": " << average_load_times[i] << endl;
+		cout << " - Depth = " << i + 1 << ": " << average_load_times[i] << "s\n";
 	}
 
 	// Print the average estimate times
 	cout << endl << "Average estimate times:" << endl;
 	for (int i = 0; i < 5; i++)
 	{
-		cout << " - Depth = " << i + 1 << ": " << avarage_times[i] << endl;
+		cout << " - Depth = " << i + 1 << ": " << avarage_estimate_times[i] << "s\n";
 	}
 
 	// Wait for user confirmation
