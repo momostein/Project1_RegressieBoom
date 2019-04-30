@@ -9,7 +9,7 @@ int main()
 {
 	using namespace std;
 	using namespace organ;
-
+	const string organsModels[5] = { "B3", "T202", "A100", "M102", "E112" };
 	// Filename of the rule file
 	const string rulefiles[5] = { "tree_gen/rules_d1.json", "tree_gen/rules_d2.json", "tree_gen/rules_d3.json", "tree_gen/rules_d4.json", "tree_gen/rules_d5.json" };
 	const string ruleFile = "tree_gen/rules.json";
@@ -66,7 +66,11 @@ int main()
 	std::chrono::time_point<std::chrono::system_clock> start, end;
 
 	start = std::chrono::system_clock::now();
-	while( x<10000){
+	while( x<100){
+		myOrgan.condition = static_cast<Condition>(rand() % 3);
+		myOrgan.leslie = rand() % 2;
+		int index = rand() % 5;
+		myOrgan.model = organsModels[index];
 	price = regressionTree.estimate(myOrgan);
 	
 	x += 1;
