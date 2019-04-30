@@ -26,9 +26,9 @@ namespace tree
 
 		TreeNode<T>* trueNode;
 		TreeNode<T>* falseNode;
-		
+
 		eval::Evaluation evaluation;
-		
+
 		T price;
 
 	public:
