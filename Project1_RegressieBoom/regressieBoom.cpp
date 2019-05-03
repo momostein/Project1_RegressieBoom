@@ -2,6 +2,8 @@
 #include <string>
 #include <chrono>    
 #include <ctime> 
+#include <vector>
+
 #include "tree.ipp"
 using namespace tree;
 
@@ -22,10 +24,20 @@ int main()
 	};
 
 	// Declare the organ that is to be estimated
-	Organ myOrgan;
-	myOrgan.model = "T202";
-	myOrgan.condition = EXCELLENT;
-	myOrgan.leslie = true;
+	Organ myOrgan("T202", EXCELLENT, true);
+
+	// A list of default organs for testing
+	const vector<Organ> DefaultOrgans = {
+			Organ("B3",		EXCELLENT,	true,	4513),
+			Organ("T202",	FAIR,		true,	625	),
+			Organ("A100",	GOOD,		true,	1051),
+			Organ("T202",	GOOD,		false,	270	),
+			Organ("M102",	GOOD,		true,	870	),
+			Organ("A100",	EXCELLENT,	false,	1770),
+			Organ("T202",	FAIR,		false,	99	),
+			Organ("A100",	GOOD,		true,	1900),
+			Organ("E112",	FAIR,		false,	77	)
+	};
 
 	// How much times the tests should be executed
 	const int load_amount = 100;
