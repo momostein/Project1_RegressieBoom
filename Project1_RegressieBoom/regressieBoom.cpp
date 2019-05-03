@@ -12,7 +12,8 @@ int main()
 
 	// Filenames of the rule files
 	const string ruleFile = "tree_gen/rules.json";
-	const string rulefiles[5] = {
+	const int depths = 5;
+	const string rulefiles[depths] = {
 		"tree_gen/rules_d1.json",
 		"tree_gen/rules_d2.json",
 		"tree_gen/rules_d3.json",
@@ -31,8 +32,18 @@ int main()
 	const int estimate_amount = 10000;
 
 	// Array to store the load times
-	double average_load_times[5];
-	double avarage_estimate_times[5];
+	double average_load_times[depths];
+	double avarage_estimate_times[depths];
+
+	// Generate an array with dafault organs to check
+	Organ organs[estimate_amount];
+	for (int i = 0; i < estimate_amount; i++)
+	{
+
+	}
+
+	// And an array to store the price estimates
+
 
 	// Print the organ
 	print(myOrgan);
