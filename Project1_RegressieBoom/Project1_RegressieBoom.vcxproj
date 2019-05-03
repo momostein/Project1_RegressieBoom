@@ -136,6 +136,7 @@
     <ClInclude Include="evaluation.h" />
     <ClInclude Include="json.h" />
     <ClInclude Include="organ.h" />
+    <ClInclude Include="regressieBoom.h" />
     <ClInclude Include="tree.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

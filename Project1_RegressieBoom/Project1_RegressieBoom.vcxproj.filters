@@ -76,5 +76,8 @@
     <ClInclude Include="evaluation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="regressieBoom.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
