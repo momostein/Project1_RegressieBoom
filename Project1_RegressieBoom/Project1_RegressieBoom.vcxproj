@@ -122,6 +122,7 @@
     <ClCompile Include="tree.ipp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="results\data.csv" />
     <None Include="tree_gen\auxiliaryFunctions.py" />
     <None Include="tree_gen\RegressionTree.ipynb" />
     <None Include="tree_gen\rules.json" />

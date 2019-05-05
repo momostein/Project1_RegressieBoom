@@ -1,0 +1,6 @@
+Tree depth;Average load time;Average estimate time;Average errors;Average obsolute errors;Average relative errors
+1;0.00145925;1.9303e-07;3271;3271;14.5541
+2;0.00230254;2.2467e-07;-974;1054;0.3333
+3;0.00366783;3.2102e-07;155;1042;3.8885
+4;0.00504491;4.5246e-07;-971;1052;0.3333
+5;0.00591363;4.5449e-07;-371;907;2.1109

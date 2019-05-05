@@ -16,6 +16,9 @@
     <Filter Include="Python Files">
       <UniqueIdentifier>{1851408e-6fbe-4421-ad17-ab5dd49bdc76}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Test Results">
+      <UniqueIdentifier>{f706a24f-7e8c-4401-b9be-127f8e8d1ab5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="regressieBoom.cpp">
@@ -61,6 +64,9 @@
     </None>
     <None Include="tree_gen\rules_d5.json">
       <Filter>Resource Files</Filter>
+    </None>
+    <None Include="results\data.csv">
+      <Filter>Test Results</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

@@ -1,6 +1,7 @@
 #include <chrono>
 #include <cstdlib>
 #include <ctime>
+#include <fstream>
 #include <iostream>
 #include <string>
 #include <vector>
@@ -62,16 +63,15 @@ int main()
 	// Declare the decision tree
 	Tree<int> regressionTree;
 
-	// For every depth
-	std::ofstream myfile;
-	myfile.open("data.csv");
+	
+	std::ofstream csv_out;
+	csv_out.open("results/data.csv");
 	//myfile.imbue(std::locale(std::locale::classic(), new Comma));
-	myfile << "Tree depth;Evarage load time;Everage estimate time;everage errors;everage obsolute errors;everage relative errors\n";
+	csv_out << "Tree depth;Average load time;Average estimate time;Average errors;Average obsolute errors;Average relative errors\n";
 
-	for (int i = 0; i < 5; i++)
+	// For every depth
+	for (int i = 0; i < depths; i++)
 	{
-
-
 		cout << endl << "Depth = " << i + 1 << ":" << endl;
 		try
 		{
@@ -157,10 +157,10 @@ int main()
 		cout << "Average error: " << average_errors[i] << endl;
 		cout << "Average abs error: " << average_abs_errors[i] << endl;
 		cout << "Average rel error: " << average_rel_errors[i] << "%" << endl;
-		myfile << i+1 << ";" << average_load_times[i] << ";" << average_estimate_times[i] << ";" << average_errors[i] << ";" << average_abs_errors[i] << ";" << average_rel_errors[i] << "\n";
+		csv_out << i+1 << ";" << average_load_times[i] << ";" << average_estimate_times[i] << ";" << average_errors[i] << ";" << average_abs_errors[i] << ";" << average_rel_errors[i] << "\n";
 		
 	}
-	myfile.close();
+	csv_out.close();
 	// Print the average load times
 	cout << endl << "Average load times:" << endl;
 	print_results(average_load_times, depths, "s");
