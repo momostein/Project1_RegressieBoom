@@ -38,6 +38,4 @@ namespace organ
 	};
 
 	void print(const Organ& organ);
-
-	
 }
