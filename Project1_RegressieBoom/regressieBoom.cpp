@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 #include <string>
 #include <chrono>    
 #include <ctime> 
@@ -53,8 +54,14 @@ int main()
 	Tree<int> regressionTree;
 
 	// For every depth
+	std::ofstream myfile;
+	myfile.open("data.csv");
+	myfile << "Tree depth;Organ type;Condition;leslie;price;predicted price\n";
+
 	for (int i = 0; i < 5; i++)
 	{
+
+
 		cout << endl << "Depth = " << i + 1 << ":" << endl;
 		try
 		{
@@ -100,10 +107,30 @@ int main()
 		chrono::time_point<chrono::high_resolution_clock> start, end;
 
 		start = chrono::high_resolution_clock::now();
+		
 		for (int j = 0; j < estimate_amount; j++)
 		{
+			int index = rand() % 9;
+			myOrgan = DefaultOrgans[index];
+			myfile << i + 1 << ";";
+			myfile << myOrgan.model << ";";
+			switch (myOrgan.condition)
+			{
+			case FAIR:
+				myfile << "Fair";
+				break;
+			case GOOD:
+				myfile << "Good";
+				break;
+			case EXCELLENT:
+				myfile << "Excellent";
+			default:
+				break;
+			}
 			price = regressionTree.estimate(myOrgan);
+			myfile << ";" << myOrgan.leslie << ";" << myOrgan.price << ";" << price << "\n";
 		}
+		
 		end = chrono::high_resolution_clock::now();
 
 		chrono::duration<double> elapsed_seconds = end - start;
@@ -114,7 +141,7 @@ int main()
 		cout << "Average estimate time: " << avarage_estimate_times[i] << "s\n";
 		
 	}
-
+	myfile.close();
 	// Print the average load times
 	cout << endl << "Average load times:" << endl;
 	for (int i = 0; i < 5; i++)
