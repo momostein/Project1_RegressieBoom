@@ -53,13 +53,6 @@ int main()
 	double average_abs_errors[depths];
 	double average_rel_errors[depths];
 
-	// Generate an array and fill it with dafault organs
-	Organ organs[estimate_amount];
-	for (int i = 0; i < estimate_amount; i++)
-	{
-		organs[i] = DefaultOrgans[i % DefaultOrgans.size()];
-	}
-	
 	// Declare the decision tree
 	Tree<int> regressionTree;
 
@@ -110,6 +103,8 @@ int main()
 		// Print the tree
 		regressionTree.print();
 
+
+
 		// An array to store the price estimates
 		int prices[estimate_amount];
 
@@ -122,7 +117,8 @@ int main()
 		// Estimate the prices and store them in the array
 		for (int j = 0; j < estimate_amount; j++)
 		{
-			prices[j] = regressionTree.estimate(organs[j]);
+			Organ test_organ = DefaultOrgans[j % DefaultOrgans.size()];
+			prices[j] = regressionTree.estimate(test_organ);
 
 		}
 
@@ -139,16 +135,18 @@ int main()
 		double total_rel_error = 0;
 		for (int j = 0; j < estimate_amount; j++)
 		{
-			int error = prices[i] - organs[j].price;
+			int real_price = DefaultOrgans[j % DefaultOrgans.size()].price;
+
+			int error = prices[j] - real_price;
 			int abs_error = abs(error);
 
 			total_error += error;
 			total_abs_error += abs_error;
-			total_rel_error += abs_error / organs[j].price;
+			total_rel_error += abs_error / (double)real_price;
 		}
 
-		average_errors[i] = total_error / estimate_amount;
-		average_abs_errors[i] = total_abs_error / estimate_amount;
+		average_errors[i] = total_error / (double)estimate_amount;
+		average_abs_errors[i] = total_abs_error / (double)estimate_amount;
 		average_rel_errors[i] = total_rel_error / estimate_amount;
 
 		cout << endl;
@@ -190,3 +188,4 @@ void print_results(const double * results, int count, const string& unit)
 		cout << " - Depth = " << i + 1 << ": " << results[i] << unit << endl;
 	}
 }
+
