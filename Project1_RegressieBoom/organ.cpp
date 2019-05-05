@@ -2,30 +2,34 @@
 
 #include "organ.h"
 
-void organ::print(const Organ & organ)
+namespace organ
 {
-	cout << "Organ:" << endl;
-
-	// Model field
-	cout << " - Model:\t" << organ.model << endl;
-
-	// Condition field
-	cout << " - Condition:\t";
-	switch (organ.condition)
+	void print(const Organ & organ)
 	{
-	case FAIR:
-		cout << "Fair";
-		break;
-	case GOOD:
-		cout << "Good";
-		break;
-	case EXCELLENT:
-		cout << "Excellent";
-	default:
-		break;
-	}
-	cout << endl;
+		cout << "Organ:" << endl;
 
-	// Leslie field
-	cout << " - Leslie:\t" << boolalpha << organ.leslie << endl;
+		// Model field
+		cout << " - Model:\t" << organ.model << endl;
+
+		// Condition field
+		cout << " - Condition:\t";
+		switch (organ.condition)
+		{
+		case FAIR:
+			cout << "Fair";
+			break;
+		case GOOD:
+			cout << "Good";
+			break;
+		case EXCELLENT:
+			cout << "Excellent";
+		default:
+			break;
+		}
+		cout << endl;
+
+		// Leslie field
+		cout << " - Leslie:\t" << boolalpha << organ.leslie << endl;
+	}
+
 }
