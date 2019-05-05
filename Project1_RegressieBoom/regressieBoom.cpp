@@ -65,7 +65,8 @@ int main()
 	// For every depth
 	std::ofstream myfile;
 	myfile.open("data.csv");
-	myfile << "Tree depth;Organ type;Condition;leslie;price;predicted price\n";
+	//myfile.imbue(std::locale(std::locale::classic(), new Comma));
+	myfile << "Tree depth;Evarage load time;Everage estimate time;everage errors;everage obsolute errors;everage relative errors\n";
 
 	for (int i = 0; i < 5; i++)
 	{
@@ -122,6 +123,7 @@ int main()
 		for (int j = 0; j < estimate_amount; j++)
 		{
 			prices[j] = regressionTree.estimate(organs[j]);
+
 		}
 
 		// Clock the end time
@@ -155,6 +157,7 @@ int main()
 		cout << "Average error: " << average_errors[i] << endl;
 		cout << "Average abs error: " << average_abs_errors[i] << endl;
 		cout << "Average rel error: " << average_rel_errors[i] << "%" << endl;
+		myfile << i+1 << ";" << average_load_times[i] << ";" << average_estimate_times[i] << ";" << average_errors[i] << ";" << average_abs_errors[i] << ";" << average_rel_errors[i] << "\n";
 		
 	}
 	myfile.close();
