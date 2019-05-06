@@ -16,9 +16,19 @@ using namespace tree;
 
 int main()
 {
-	// Filenames of the rule files
-	const string ruleFile = "tree_gen/rules.json";
 	const int depths = 5;
+	const int fields = 6;
+
+	// Headers and their units
+	const string headers[fields] = { "Tree depth", "load time (s)", "Estimate time (s)","Total error","Absolute error","Relative error" };
+	const string units[fields] = { "", "s", "s", "", "", "%" };
+
+	// How much times the tests should be executed
+	const int load_amount = 100;
+	const int estimate_amount = 10000;
+
+	// Filenames of the rule files
+	// const string ruleFile = "tree_gen/rules.json"; // Single rule file
 	const string rulefiles[depths] = {
 		"tree_gen/rules_d1.json",
 		"tree_gen/rules_d2.json",
@@ -26,6 +36,9 @@ int main()
 		"tree_gen/rules_d4.json",
 		"tree_gen/rules_d5.json"
 	};
+
+	// Filename of the output csv file
+	const string outFile = "results/data.csv";
 
 	// A list of default organs for testing
 	const vector<Organ> DefaultOrgans = {
@@ -40,32 +53,21 @@ int main()
 			Organ("E112",	FAIR,		false,	77)
 	};
 
-	// How much times the tests should be executed
-	const int load_amount = 100;
-	const int estimate_amount = 10000;
+	// Twodimensional array to store the test results
+	double results[depths][fields];
 
-	// Arrays to store the average times
-	double average_load_times[depths];
-	double average_estimate_times[depths];
-
-	// Arrays to store the average errors
-	double average_errors[depths];
-	double average_abs_errors[depths];
-	double average_rel_errors[depths];
-
-	// Declare the decision tree
+	// The regression tree
 	Tree<int> regressionTree;
 
-	
-	std::ofstream csv_out;
-	csv_out.open("results/data.csv");
-	//myfile.imbue(std::locale(std::locale::classic(), new Comma));
-	csv_out << "Tree depth;Average load time;Average estimate time;Average errors;Average obsolute errors;Average relative errors\n";
-
-	// For every depth
+	// Do the tests for every depth
 	for (int i = 0; i < depths; i++)
 	{
-		cout << endl << "Depth = " << i + 1 << ":" << endl;
+		int depth = i + 1;
+
+		results[i][0] = depth;
+		cout << endl << "Depth = " << depth << ":" << endl;
+
+		// Try to load the test a bunch of times
 		try
 		{
 			// Start and end times
@@ -86,7 +88,7 @@ int main()
 
 			// Total time and the average time
 			chrono::duration<double> elapsed_seconds = end - start;
-			average_load_times[i] = elapsed_seconds.count() / load_amount;
+			results[i][1] = elapsed_seconds.count() / load_amount;
 		}
 		catch (exception& e)
 		{
@@ -102,8 +104,6 @@ int main()
 
 		// Print the tree
 		regressionTree.print();
-
-
 
 		// An array to store the price estimates
 		int prices[estimate_amount];
@@ -127,7 +127,7 @@ int main()
 
 		// Calculate the total time and the average time
 		chrono::duration<double> elapsed_seconds = end - start;
-		average_estimate_times[i] = elapsed_seconds.count() / estimate_amount;
+		results[i][2] = elapsed_seconds.count() / estimate_amount;
 
 		// Calculate the average errors
 		int total_error = 0;
@@ -145,35 +145,32 @@ int main()
 			total_rel_error += abs_error / (double)real_price;
 		}
 
-		average_errors[i] = total_error / (double)estimate_amount;
-		average_abs_errors[i] = total_abs_error / (double)estimate_amount;
-		average_rel_errors[i] = total_rel_error / estimate_amount;
+		results[i][3] = total_error / (double)estimate_amount;
+		results[i][4] = total_abs_error / (double)estimate_amount;
+		results[i][5] = total_rel_error / estimate_amount;
 
 		cout << endl;
-		cout << "Average load time: " << average_load_times[i] << "s\n";
-		cout << "Average estimate time: " << average_estimate_times[i] << "s\n";
-		cout << "Average error: " << average_errors[i] << endl;
-		cout << "Average abs error: " << average_abs_errors[i] << endl;
-		cout << "Average rel error: " << average_rel_errors[i] << "%" << endl;
-		csv_out << i+1 << ";" << average_load_times[i] << ";" << average_estimate_times[i] << ";" << average_errors[i] << ";" << average_abs_errors[i] << ";" << average_rel_errors[i] << "\n";
-		
+		cout << "Average load time: " << results[i][1] << "s\n";
+		cout << "Average estimate time: " << results[i][2] << "s\n";
+		cout << "Average error: " << results[i][3] << endl;
+		cout << "Average abs error: " << results[i][4] << endl;
+		cout << "Average rel error: " << results[i][5] << "%" << endl;
+	}
+
+	// Print out the results
+	cout << endl;
+	print_results(&(results[0][0]), headers, units, depths, fields);
+
+	ofstream csv_out(outFile);
+	if (csv_out)
+	{
+		csv_write(csv_out, &(results[0][0]), headers, depths, fields);
+	}
+	else
+	{
+		cout << "Couldn't open the output file..." << endl;
 	}
 	csv_out.close();
-	// Print the average load times
-	cout << endl << "Average load times:" << endl;
-	print_results(average_load_times, depths, "s");
-	
-	cout << endl << "Average estimate times:" << endl;
-	print_results(average_estimate_times, depths, "s");
-	
-	cout << endl << "Average errors:" << endl;
-	print_results(average_errors, depths);
-
-	cout << endl << "Average absolute errors:" << endl;
-	print_results(average_abs_errors, depths);
-
-	cout << endl << "Average relative errors:" << endl;
-	print_results(average_rel_errors, depths, "%");
 
 	// Wait for user confirmation
 	cout << endl << "Press enter to continue...";
@@ -181,11 +178,43 @@ int main()
 	return 0;
 }
 
-void print_results(const double * results, int count, const string& unit)
-{ 
-	for (int i = 0; i < count; i++)
+// Prints out the results per field
+void print_results(const double * results, const string * headers, const string * units, int rows, int cols)
+{
+	for (int i = 1; i < cols; i++)
 	{
-		cout << " - Depth = " << i + 1 << ": " << results[i] << unit << endl;
+		cout << headers[i] << ':' << endl;
+		for (int j = 0; j < rows; j++)
+		{
+			cout << " - Depth = " << *(results + j * cols) << ": " << *(results + i + j * cols) << units[i] << endl;
+		}
+		cout << endl;
 	}
 }
 
+// Writes the results to a csv file
+void csv_write(ofstream & out_file, const double * data, const string * headers, int rows, int cols, char sep)
+{
+	for (const string* header = headers; header < headers + cols; header++)
+	{
+		out_file << *header;
+		if (header != headers + cols - 1)
+		{
+			out_file << sep;
+		}
+	}
+	out_file << endl;
+
+	for (int row = 0; row < rows; row++)
+	{
+		for (int col = 0; col < cols; col++)
+		{
+			out_file << data[row*cols + col];
+			if (col != cols - 1) {
+				out_file << sep;
+			}
+		}
+		out_file << endl;
+	}
+
+}

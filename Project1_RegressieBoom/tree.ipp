@@ -166,6 +166,7 @@ namespace tree
 
 		// Parse the file's contents into the root node
 		root = new TreeNode<T>(ruleFile);
+		ruleFile.close();
 	}
 
 	template<typename T>
