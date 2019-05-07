@@ -20,7 +20,7 @@ int main()
 	const int fields = 6;
 
 	// Headers and their units
-	const string headers[fields] = { "Tree depth", "load time (s)", "Estimate time (s)","Total error","Absolute error","Relative error (%)" };
+	const string headers[fields] = { "Tree depth", "Load time (s)", "Estimate time (s)","Total error","Absolute error","Relative error (%)" };
 	const string units[fields] = { "", "s", "s", "", "", "%" };
 
 	// How much times the tests should be executed
