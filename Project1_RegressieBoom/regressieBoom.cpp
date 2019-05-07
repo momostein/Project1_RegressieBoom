@@ -16,16 +16,23 @@ using namespace tree;
 
 int main()
 {
+	// Main start and end times
+	chrono::time_point<chrono::high_resolution_clock> main_start, main_end;
+	main_start = chrono::high_resolution_clock::now();
+
 	const int depths = 5;
 	const int fields = 6;
 
-	// Headers and their units
-	const string headers[fields] = { "Tree depth", "Load time (s)", "Estimate time (s)","Total error","Absolute error","Relative error (%)" };
+	// Headers for the csv file
+	const string csv_headers[fields] = { "depth", "load", "est","total","abs","rel" };
+
+	// Headers and units for printing tot the terminal
+	const string disp_headers[fields] = { "Tree Depth", "Load time", "Estimate time","Total error","Absolute error","Relative error"};
 	const string units[fields] = { "", "s", "s", "", "", "%" };
 
 	// How much times the tests should be executed
-	const int load_amount = 100;
-	const int estimate_amount = 10000;
+	const int load_amount = 10000;
+	const int estimate_amount = 10000000;
 
 	// Filenames of the rule files
 	// const string ruleFile = "tree_gen/rules.json"; // Single rule file
@@ -106,7 +113,7 @@ int main()
 		regressionTree.print();
 
 		// An array to store the price estimates
-		int prices[estimate_amount];
+		vector<int> prices(estimate_amount);
 
 		// The start and end times
 		chrono::time_point<chrono::high_resolution_clock> start, end;
@@ -115,7 +122,7 @@ int main()
 		start = chrono::high_resolution_clock::now();
 
 		// Estimate the prices and store them in the array
-		for (int j = 0; j < estimate_amount; j++)
+		for (int j = 0; j < prices.size(); j++)
 		{
 			Organ test_organ = DefaultOrgans[j % DefaultOrgans.size()];
 			prices[j] = regressionTree.estimate(test_organ);
@@ -133,7 +140,7 @@ int main()
 		int total_error = 0;
 		int total_abs_error = 0;
 		double total_rel_error = 0;
-		for (int j = 0; j < estimate_amount; j++)
+		for (int j = 0; j < prices.size(); j++)
 		{
 			int real_price = DefaultOrgans[j % DefaultOrgans.size()].price;
 
@@ -159,18 +166,23 @@ int main()
 
 	// Print out the results
 	cout << endl;
-	print_results(&(results[0][0]), headers, units, depths, fields);
+	print_results(&(results[0][0]), disp_headers, units, depths, fields);
 
 	ofstream csv_out(outFile);
 	if (csv_out)
 	{
-		csv_write(csv_out, &(results[0][0]), headers, depths, fields);
+		csv_write(csv_out, &(results[0][0]), csv_headers, depths, fields);
 	}
 	else
 	{
 		cout << "Couldn't open the output file..." << endl;
 	}
 	csv_out.close();
+
+	main_end = chrono::high_resolution_clock::now();
+	chrono::duration<double> total_time = main_end - main_start;
+	
+	cout << "Test completed after " << total_time.count() << " seconds." << endl;
 
 	// Wait for user confirmation
 	cout << endl << "Press enter to continue...";
