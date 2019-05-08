@@ -31,6 +31,7 @@ int main()
 	const string units[fields] = { "", "s", "s", "", "", "%" };
 
 	// How much times the tests should be executed
+	// Lower these if the tests take too long
 	const int load_amount = 10000;
 	const int estimate_amount = 10000000;
 
