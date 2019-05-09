@@ -138,8 +138,8 @@ int main()
 		results[i][2] = elapsed_seconds.count() / estimate_amount;
 
 		// Calculate the average errors
-		int total_error = 0;
-		int total_abs_error = 0;
+		long long total_error = 0;
+		unsigned long long total_abs_error = 0;
 		double total_rel_error = 0;
 		for (int j = 0; j < prices.size(); j++)
 		{
