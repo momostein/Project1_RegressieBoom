@@ -2,4 +2,4 @@
 
 Programmeerproject door Sander Ouderits en Brecht Ooms.
 
-2019
+KU Leuven, Geel - Programmeren en Algoritmen 2019
