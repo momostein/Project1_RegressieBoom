@@ -155,7 +155,7 @@ int main()
 
 		results[i][3] = total_error / (double)estimate_amount;
 		results[i][4] = total_abs_error / (double)estimate_amount;
-		results[i][5] = total_rel_error / estimate_amount;
+		results[i][5] = (total_rel_error / estimate_amount) * 100;
 
 		cout << endl;
 		cout << "Average load time: " << results[i][1] << "s\n";
