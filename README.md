@@ -1,4 +1,5 @@
 # Project 1: Regression Tree
 
-Useful links:
-[Tree Printing](https://stackoverflow.com/a/51730733/9664330)
+Programmeerproject door Sander Ouderits en Brecht Ooms.
+
+KU Leuven, Geel - Programmeren en Algoritmen 2019
